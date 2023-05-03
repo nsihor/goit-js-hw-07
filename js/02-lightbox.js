@@ -14,18 +14,14 @@ const gallery = galleryItems
   .join("");
 
 const galleryContainer = document.querySelector(".gallery");
-
 galleryContainer.innerHTML = gallery;
 
-galleryContainer.addEventListener("click", (e) => {
-  e.preventDefault();
+const imgModal = new SimpleLightbox('.gallery a', {captionDelay: 250});
 
-  if (e.target.nodeName !== "IMG") {
-    return;
-  }
+// galleryContainer.addEventListener("click", (e) => {
+//   e.preventDefault();
 
-  const imgTarget = e.target;
-
-  const imgModal = new SimpleLightbox('.gallery a', {captionDelay: 250});
-});
-
+//   if (e.target.nodeName !== "IMG") {
+//     return;
+//   }
+// });

@@ -24,12 +24,6 @@ galleryContainer.addEventListener('click', e => {
         return;
     }
     
-    const imgTarget = e.target;
-
-    const imgModal = basicLightbox.create(`<img src=${imgTarget.dataset.source} width="1280" height="852">`)
-
-    imgModal.show()
-
     const onEscKeyPress = e => {
         if (e.code === 'Escape') {
             imgModal.close();
@@ -37,5 +31,16 @@ galleryContainer.addEventListener('click', e => {
         }
     }
 
-    window.addEventListener('keydown', onEscKeyPress);
+    const imgTarget = e.target;
+
+    const imgModal = basicLightbox.create(`<img src=${imgTarget.dataset.source} width="1280" height="852">`, {
+        onShow: () => {
+            window.addEventListener('keydown', onEscKeyPress)
+        },
+        onClose: () => {
+            window.removeEventListener('keydown', onEscKeyPress)
+        } 
+    })
+
+    imgModal.show()
 }); 
